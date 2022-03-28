@@ -5,11 +5,15 @@ SRCS += src/dbg.cpp
 SRCS += src/TblType.cpp
 SRCS += src/Type.cpp
 
+INC += -I/usr/include/cppconn
+
+LIBS += -L/usr/lib -lmysqlcppconn
+
 all:
-	g++ -Wall $(SRCS) -o $(APPNAME)
+	g++ -Wall $(SRCS) $(INC) $(LIBS) -o $(APPNAME)
 
 clean:
 	rm -f $(APPNAME)
 
 debug:
-	g++ -Wall $(SRCS) -o $(APPNAME) -DDEBUG
+	g++ -Wall $(SRCS) $(INC) $(LIBS) -o $(APPNAME) -DDEBUG
