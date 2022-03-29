@@ -2,9 +2,9 @@ APPNAME = ECatalog
 
 SRCS += main.cpp
 SRCS += src/dbg.cpp
-SRCS += src/TblType.cpp
+SRCS += src/TypeModel.cpp
+SRCS += src/TypeController.cpp
 SRCS += src/Type.cpp
-SRCS += src/Database.cpp
 
 INC += -I/usr/include/cppconn
 
