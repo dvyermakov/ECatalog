@@ -3,6 +3,7 @@ APPNAME = ECatalog
 SRCS += main.cpp
 SRCS += src/dbg.cpp
 SRCS += src/TypeModel.cpp
+SRCS += src/TypeView.cpp
 SRCS += src/TypeController.cpp
 SRCS += src/Type.cpp
 
