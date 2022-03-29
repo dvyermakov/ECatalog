@@ -4,6 +4,7 @@ SRCS += main.cpp
 SRCS += src/dbg.cpp
 SRCS += src/TblType.cpp
 SRCS += src/Type.cpp
+SRCS += src/Database.cpp
 
 INC += -I/usr/include/cppconn
 
