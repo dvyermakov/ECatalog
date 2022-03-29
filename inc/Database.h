@@ -8,6 +8,7 @@ class Database {
                 
     public:
         Database();
+        
 };
 
 #endif

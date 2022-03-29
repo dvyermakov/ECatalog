@@ -1,11 +1,12 @@
 #include <iostream>
 #include <string>
 
-#include "inc/Database.h"
+#include "inc/TypeModel.h"
 #include "inc/dbg.h"
 
 
 int main(int argc, char *argv[]){
-  
+  TypeModel tbl;
+  tbl.select();
   return 0;
 }
