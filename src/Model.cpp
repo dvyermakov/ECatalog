@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * @file    Type.cpp
+  * @file    Model.cpp
   * @author  Dmitriy Ermakov
-  * @brief   Класс для хранения одной записи из таблицы Type
+  * @brief   Модель базы данных
   *          
   *
   @verbatim
@@ -28,20 +28,14 @@
   ******************************************************************************
   */ 
 
-#include "../inc/Type.h"
+#include "../inc/Model.h"
 #include "../inc/dbg.h"
 
 #include <string>
 
 /**
   * @brief      Конструктор
-  * @param      _id 
-  * @param      _Name название типа
-  * @param      _ParentId id родительского типа
+  * @param      
   * @retval     none
   */
-Type::Type(int _id, std::string _Name, int _ParentId){
-    this->id = _id;
-    this->Name = _Name;
-    this->ParentId = _ParentId;
-}
+
