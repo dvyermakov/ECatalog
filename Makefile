@@ -3,6 +3,10 @@ APPNAME = ECatalog
 SRCS += main.cpp
 SRCS += src/dbg.cpp
 SRCS += src/Model.cpp
+SRCS += src/Type.cpp
+SRCS += src/Place.cpp
+SRCS += src/Package.cpp
+SRCS += src/Component.cpp
 SRCS += src/Detail.cpp
 
 

@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Detail.cpp
+  * @file    Place.cpp
   * @author  Dmitriy Ermakov
   * @brief   
   *          
@@ -28,7 +28,7 @@
   ******************************************************************************
   */ 
 
-#include "../inc/Detail.h"
+#include "../inc/Place.h"
 #include "../inc/dbg.h"
 
 #include <string>
@@ -38,25 +38,33 @@
   * @param      
   * @retval     none
   */
-Detail::Detail(){
+Place::Place(){
   
 }
 
 /**
   * @brief      Конструктор
   * @param      _Id
-  * @param      _component
-  * @param      _Count
-  * @param      _Price
-  * @param      _place
+  * @param      _Name
+  * @param      _ParentId
   * @retval     none
   */
-Detail::Detail (uint _Id, Component _component, double _Count, double _Price, Place _place){
+Place::Place(uint _Id, std::string _Name, uint _ParentId){
   Id = _Id;
-  component = _component;
-  Count = _Count;
-  Price = _Price;
-  place = _place;
+  Name = _Name;
+  ParentId = _ParentId;
+}
+
+/**
+  * @brief      Перегруженный оператор присваивания
+  * @param      &rhs
+  * @retval     Place&
+  */
+Place& Place::operator=(const Place &rhs){
+  Id = rhs.Id;
+  Name = rhs.Name;
+  ParentId = rhs.ParentId;
+  return *this;
 }
 
 /**
@@ -64,6 +72,7 @@ Detail::Detail (uint _Id, Component _component, double _Count, double _Price, Pl
   * @param      
   * @retval     none
   */
-Detail::~Detail(){
+Place::~Place(){
   
 }
+

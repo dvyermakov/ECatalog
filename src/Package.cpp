@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Detail.cpp
+  * @file    Package.cpp
   * @author  Dmitriy Ermakov
   * @brief   
   *          
@@ -28,7 +28,7 @@
   ******************************************************************************
   */ 
 
-#include "../inc/Detail.h"
+#include "../inc/Package.h"
 #include "../inc/dbg.h"
 
 #include <string>
@@ -38,25 +38,30 @@
   * @param      
   * @retval     none
   */
-Detail::Detail(){
+Package::Package(){
   
 }
 
 /**
   * @brief      Конструктор
   * @param      _Id
-  * @param      _component
-  * @param      _Count
-  * @param      _Price
-  * @param      _place
+  * @param      _Name
   * @retval     none
   */
-Detail::Detail (uint _Id, Component _component, double _Count, double _Price, Place _place){
+Package::Package(uint _Id, std::string _Name){
   Id = _Id;
-  component = _component;
-  Count = _Count;
-  Price = _Price;
-  place = _place;
+  Name = _Name;
+}
+
+/**
+  * @brief      Перегруженный оператор присваивания
+  * @param      &rhs
+  * @retval     Package&
+  */
+Package& Package::operator=(const Package &rhs){
+  Id = rhs.Id;
+  Name = rhs.Name;
+  return *this;
 }
 
 /**
@@ -64,6 +69,7 @@ Detail::Detail (uint _Id, Component _component, double _Count, double _Price, Pl
   * @param      
   * @retval     none
   */
-Detail::~Detail(){
+Package::~Package(){
   
 }
+

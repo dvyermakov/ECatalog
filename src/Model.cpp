@@ -67,57 +67,39 @@ Model::~Model(){
   
 }
 
-/**
-  * @brief      Получить все детали
-  * @param      
-  * @retval     none
-  */
-void Model::getAllDetails(){
-  
-}
-
-/**
-  * @brief      Вывести все детали на экран
-  * @param      
-  * @retval     none
-  */
-void Model::printDetails(){
-
-}
-
-void Model::select(){
-  const string url=EXAMPLE_HOST;
-  const string user=EXAMPLE_USER;
-  const string pass=EXAMPLE_PASS;
-  const string database=EXAMPLE_DB;
-  size_t row;
-  bool ok;
-  /* Using the Driver to create a connection */
-  sql::Driver* driver = get_driver_instance();
-  std::auto_ptr<sql::Connection> con(driver->connect(url, user, pass));
-  con->setSchema(database);
-  /* Creating a "simple" statement - "simple" = not a prepared statement */
-  std::unique_ptr< sql::Statement > stmt(con->createStatement());
-  ok = stmt->execute("SELECT id, Component, Count, Price, Place FROM detail ORDER BY id ASC");
-  cout << "#\t stmt->execute('SELECT id, Component, Count, Price, Place FROM detail ORDER BY id ASC') = ";
-  cout << ok << endl;
-  if (ok == true) {
-    /* The first result is a result set */
-    cout << "#\t\t Fetching results" << endl;
-    /*
-    NOTE: If stmt.getMoreResults() would be implemented already one
-    would use a do { ... } while (stmt.getMoreResults()) loop
-    */
-    std::unique_ptr< sql::ResultSet > res(stmt->getResultSet());
-    row = 0;
-    while (res->next()) {
-      cout << "#\t\t Row " << row << " - id = " << res->getInt("id");
-      cout << ", Component = '" << res->getInt("Component") << "'";
-      cout << ", Count = '" << res->getDouble("Count") << "'";
-      cout << ", Price = '" << res->getDouble("Price") << "'";
-      cout << ", Place = '" << res->getInt("Place") << "'" << endl;
-      row++;
-    }
-  }
-  return;
-}
+// void Model::select(){
+//   const string url=EXAMPLE_HOST;
+//   const string user=EXAMPLE_USER;
+//   const string pass=EXAMPLE_PASS;
+//   const string database=EXAMPLE_DB;
+//   size_t row;
+//   bool ok;
+//   /* Using the Driver to create a connection */
+//   sql::Driver* driver = get_driver_instance();
+//   std::auto_ptr<sql::Connection> con(driver->connect(url, user, pass));
+//   con->setSchema(database);
+//   /* Creating a "simple" statement - "simple" = not a prepared statement */
+//   std::unique_ptr< sql::Statement > stmt(con->createStatement());
+//   ok = stmt->execute("SELECT id, Component, Count, Price, Place FROM detail ORDER BY id ASC");
+//   cout << "#\t stmt->execute('SELECT id, Component, Count, Price, Place FROM detail ORDER BY id ASC') = ";
+//   cout << ok << endl;
+//   if (ok == true) {
+//     /* The first result is a result set */
+//     cout << "#\t\t Fetching results" << endl;
+//     /*
+//     NOTE: If stmt.getMoreResults() would be implemented already one
+//     would use a do { ... } while (stmt.getMoreResults()) loop
+//     */
+//     std::unique_ptr< sql::ResultSet > res(stmt->getResultSet());
+//     row = 0;
+//     while (res->next()) {
+//       cout << "#\t\t Row " << row << " - id = " << res->getInt("id");
+//       cout << ", Component = '" << res->getInt("Component") << "'";
+//       cout << ", Count = '" << res->getDouble("Count") << "'";
+//       cout << ", Price = '" << res->getDouble("Price") << "'";
+//       cout << ", Place = '" << res->getInt("Place") << "'" << endl;
+//       row++;
+//     }
+//   }
+//   return;
+// }

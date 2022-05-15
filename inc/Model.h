@@ -3,7 +3,8 @@
 
 #include <vector>
 #include <string>
-#include "../inc/Detail.h"
+
+#include "Detail.h"
 
 class Model {
   private:
@@ -13,9 +14,7 @@ class Model {
   public:
     Model();
     ~Model();
-    void getAllDetails();
-    void printDetails();
-    void select();
+    
 };
 
 #endif

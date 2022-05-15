@@ -7,6 +7,5 @@
 
 int main(int argc, char *argv[]){
   Model model;
-  model.select();
   return 0;
 }

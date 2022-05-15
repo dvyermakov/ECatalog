@@ -1,19 +1,23 @@
 #ifndef DETAIL_H
 #define DETAIL_H
 
-#include <vector>
 #include <string>
+
+#include "Component.h"
+#include "Place.h"
 
 class Detail {
   private:
-    int Id;
-    int ComponentId;
+    uint Id;
+    Component component;
     double Count;
     double Price;
-    int PlaceId;
+    Place place;
         
   public:
-    Detail(int id, int componentId, float count, float price, int placeId);
+    Detail();
+    Detail (uint _Id, Component _component, double _Count, double _Price, Place _place);
+    ~Detail();
 };
 
 #endif

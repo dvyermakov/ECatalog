@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Detail.cpp
+  * @file    Component.cpp
   * @author  Dmitriy Ermakov
   * @brief   
   *          
@@ -28,7 +28,7 @@
   ******************************************************************************
   */ 
 
-#include "../inc/Detail.h"
+#include "../inc/Component.h"
 #include "../inc/dbg.h"
 
 #include <string>
@@ -38,25 +38,36 @@
   * @param      
   * @retval     none
   */
-Detail::Detail(){
+Component::Component(){
   
 }
 
 /**
   * @brief      Конструктор
   * @param      _Id
-  * @param      _component
-  * @param      _Count
-  * @param      _Price
-  * @param      _place
+  * @param      _Name
+  * @param      _type
+  * @param      _package
   * @retval     none
   */
-Detail::Detail (uint _Id, Component _component, double _Count, double _Price, Place _place){
+Component::Component(uint _Id, std::string _Name, Type _type, Package _package){
   Id = _Id;
-  component = _component;
-  Count = _Count;
-  Price = _Price;
-  place = _place;
+  Name = _Name;
+  type = _type;
+  package = _package;
+}
+
+/**
+  * @brief      Перегруженный оператор присваивания
+  * @param      &rhs
+  * @retval     Component&
+  */
+Component& Component::operator=(const Component &rhs){
+  Id = rhs.Id;
+  Name = rhs.Name;
+  type = rhs.type;
+  package = rhs.package;
+  return *this;
 }
 
 /**
@@ -64,6 +75,7 @@ Detail::Detail (uint _Id, Component _component, double _Count, double _Price, Pl
   * @param      
   * @retval     none
   */
-Detail::~Detail(){
+Component::~Component(){
   
 }
+
