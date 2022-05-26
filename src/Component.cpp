@@ -79,3 +79,14 @@ Component::~Component(){
   
 }
 
+std::string Component::getName(){
+  return Name;
+}
+
+std::string Component::getTypeName(){
+  return type.getName();
+}
+
+std::string Component::getPackageName(){
+  return package.getName();
+}

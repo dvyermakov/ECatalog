@@ -18,6 +18,9 @@ class Component {
     Component(uint _Id, std::string _Name, Type _type, Package _package);
     Component& operator=(const Component &rhs);
     ~Component();
+    std::string getName();
+    std::string getTypeName();
+    std::string getPackageName();
 };
 
 #endif

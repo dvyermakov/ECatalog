@@ -1,11 +1,14 @@
 #include <iostream>
 #include <string>
 
-#include "inc/Model.h"
+#include "inc/DetailsModel.h"
+#include "inc/DetailsConsoleView.h"
 #include "inc/dbg.h"
 
 
 int main(int argc, char *argv[]){
-  Model model;
+  DetailsModel model;
+  DetailsConsoleView consoleView(&model);
+  model.select();
   return 0;
 }

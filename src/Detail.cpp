@@ -67,3 +67,31 @@ Detail::Detail (uint _Id, Component _component, double _Count, double _Price, Pl
 Detail::~Detail(){
   
 }
+
+int Detail::getId(){
+  return Id;
+}
+
+std::string Detail::getTypeName(){
+  return component.getTypeName();
+}
+
+std::string Detail::getComponentName(){
+  return component.getName();
+}
+
+std::string Detail::getPackageName(){
+  return component.getPackageName();
+}
+
+double Detail::getCount(){
+  return Count;
+}
+
+double Detail::getPrice(){
+  return Price;
+}
+
+std::string Detail::getPlaceName(){
+  return place.getName();
+}

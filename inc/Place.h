@@ -14,6 +14,9 @@ class Place {
     Place(uint _Id, std::string _Name, uint _ParentId);
     Place& operator=(const Place &rhs);
     ~Place();
+
+    void PrintPlace();
+    std::string getName();
 };
 
 #endif

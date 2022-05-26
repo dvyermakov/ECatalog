@@ -73,3 +73,10 @@ Package::~Package(){
   
 }
 
+void Package::PrintPackage(){
+  std::cout << Name << "\t";
+}
+
+std::string Package::getName(){
+  return Name;
+}

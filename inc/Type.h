@@ -14,6 +14,6 @@ class Type {
     Type(uint _Id, std::string _Name, uint _ParentId);
     Type& operator=(const Type &rhs);
     ~Type();
+    std::string getName();
 };
-
 #endif

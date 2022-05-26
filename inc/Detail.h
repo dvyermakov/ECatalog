@@ -18,6 +18,13 @@ class Detail {
     Detail();
     Detail (uint _Id, Component _component, double _Count, double _Price, Place _place);
     ~Detail();
+    int getId();
+    std::string getTypeName();
+    std::string getComponentName();
+    std::string getPackageName();
+    double getPrice();
+    double getCount();
+    std::string getPlaceName();
 };
 
 #endif

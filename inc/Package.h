@@ -13,6 +13,9 @@ class Package {
     Package(uint _Id, std::string _Name);
     Package& operator=(const Package &rhs);
     ~Package();
+
+    void PrintPackage();
+    std::string getName();
 };
 
 #endif

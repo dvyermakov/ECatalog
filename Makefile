@@ -2,12 +2,15 @@ APPNAME = ECatalog
 
 SRCS += main.cpp
 SRCS += src/dbg.cpp
-SRCS += src/Model.cpp
+SRCS += src/Observable.cpp
+SRCS += src/DetailsModel.cpp
+SRCS += src/DetailsConsoleView.cpp
 SRCS += src/Type.cpp
 SRCS += src/Place.cpp
 SRCS += src/Package.cpp
 SRCS += src/Component.cpp
 SRCS += src/Detail.cpp
+SRCS += src/functions.cpp
 
 
 INC += -I/usr/include/cppconn
@@ -15,10 +18,10 @@ INC += -I/usr/include/cppconn
 LIBS += -L/usr/lib -lmysqlcppconn
 
 all:
-	g++ -Wall $(SRCS) $(INC) $(LIBS) -o $(APPNAME)
+	clear ; g++ -Wall $(SRCS) $(INC) $(LIBS) -o $(APPNAME)
 
 clean:
-	rm -f $(APPNAME)
+	clear ; rm -f $(APPNAME)
 
 debug:
-	g++ -Wall $(SRCS) $(INC) $(LIBS) -o $(APPNAME) -DDEBUG
+	clear ; g++ -Wall $(SRCS) $(INC) $(LIBS) -o $(APPNAME) -DDEBUG

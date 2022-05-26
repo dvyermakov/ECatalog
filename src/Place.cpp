@@ -76,3 +76,15 @@ Place::~Place(){
   
 }
 
+void Place::PrintPlace(){
+  std::cout << Name << "\t";
+}
+
+/**
+  * @brief      Возрат значения
+  * @param      none
+  * @retval     std::string
+  */
+std::string Place::getName(){
+  return Name;
+}

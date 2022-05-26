@@ -76,3 +76,6 @@ Type::~Type(){
   
 }
 
+std::string Type::getName(){
+  return Name;
+}
