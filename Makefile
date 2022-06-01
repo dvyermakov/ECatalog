@@ -13,7 +13,7 @@ SRCS += src/Detail.cpp
 SRCS += src/functions.cpp
 
 
-INC += -I/usr/include/cppconn
+INC += -I/usr/include/mysql-cppconn-8/jdbc
 
 LIBS += -L/usr/lib -lmysqlcppconn
 
