@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <climits>
 #include "../inc/DetailsController.h"
 
 DetailsController::DetailsController(DetailsModel *model){
@@ -17,9 +19,11 @@ void DetailsController::start(){
     switch (command) {
       case (1):{
         system("clear");
-        std::cout << "\tВведите название компонента или его начало:" << std::endl;
+        std::cin.clear();
+        std::cin.ignore(INT_MAX,'\n'); 
+        std::cout << "\tВведите название компонента или его начало: ";
         std::string nameLike;
-        std::cin >> nameLike;
+        getline(std::cin, nameLike);
         _model->select(nameLike);
         std::cout << "\tНажмите 0 для продолжения..." << std::endl;
         int tmp;
