@@ -17,7 +17,10 @@ void DetailsController::start(){
     switch (command) {
       case (1):{
         system("clear");
-        _model->select();
+        std::cout << "\tВведите название компонента или его начало:" << std::endl;
+        std::string nameLike;
+        std::cin >> nameLike;
+        _model->select(nameLike);
         std::cout << "\tНажмите 0 для продолжения..." << std::endl;
         int tmp;
         scanf("%d", &tmp);
