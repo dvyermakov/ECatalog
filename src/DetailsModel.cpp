@@ -72,6 +72,12 @@ DetailsModel::~DetailsModel(){
   
 }
 
+void DetailsModel::clear(){
+  if (Details.size() > 0){
+    Details.clear();
+  }
+}
+
 void DetailsModel::select(){
   const string url=EXAMPLE_HOST;
   const string user=EXAMPLE_USER;
@@ -96,38 +102,23 @@ void DetailsModel::select(){
                         "LEFT JOIN place ON (detail.Place = place.id) "
                         "LEFT JOIN package ON (component.Pack = package.id) "
                         "WHERE (component.Name LIKE 'AT%');");
-  cout << "#\t stmt->execute('SELECT id, Component, Count, Price, Place FROM detail ORDER BY id ASC') = ";
-  cout << ok << endl;
   if (ok == true) {
-    /* The first result is a result set */
-    cout << "#\t\t Fetching results" << endl;
-    /*
-    NOTE: If stmt.getMoreResults() would be implemented already one
-    would use a do { ... } while (stmt.getMoreResults()) loop
-    */
+    this->clear();
     std::unique_ptr< sql::ResultSet > res(stmt->getResultSet());
     row = 0;    
     while (res->next()) {
-      std::string tmpstr;
-      int detailId = res->getInt("detailId");
-      tmpstr = std::to_string(detailId); // !!! УБРАТЬ ЭТО ОТСЮДА !!!
-      std::string typeName = res->getString("typeName");
-      std::string componentName = res->getString("componentName");
-      std::string packageName = res->getString("packageName");
-      double detailPrice = res->getDouble("detailPrice");      
-      tmpstr = std::to_string(detailPrice);
-      double detailCount = res->getDouble("detailCount");
-      tmpstr = std::to_string(detailCount);
-      std::string placeName = res->getString("placeName");
-      int detailPlace = res->getInt("detailPlace");      
-      int componentType = res->getInt("componentType");      
-      int componentPack = res->getInt("componentPack");      
-      int detailComponent = res->getInt("detailComponent");      
-      Place *place = new Place(detailPlace, placeName, 0);
-      Type *type = new Type(componentType, typeName, 0);
-      Package *pack = new Package(componentPack, packageName);
-      Component *comp = new Component(detailComponent, componentName, *type, *pack);      
-      Detail *det = new Detail(detailId, *comp, detailCount, detailPrice, *place);
+      Place *place = new Place(res->getInt("detailPlace"), 
+                              res->getString("placeName"), 0);
+      Type *type = new Type(res->getInt("componentType"), 
+                            res->getString("typeName"), 0);
+      Package *pack = new Package(res->getInt("componentPack"), 
+                                  res->getString("packageName"));
+      Component *comp = new Component(res->getInt("detailComponent"), 
+                                      res->getString("componentName"), *type, *pack);      
+      Detail *det = new Detail(res->getInt("detailId"), 
+                              *comp, 
+                              res->getDouble("detailCount"), 
+                              res->getDouble("detailPrice"), *place);
       Details.push_back(det);
       row++;
       delete place;
@@ -146,16 +137,8 @@ std::vector<std::string> DetailsModel::getCaptions(){
 
 std::vector<std::vector<std::string>> DetailsModel::getTable(){
   std::vector<std::vector<std::string>> table;  
-  // for (int i = 0; i < Details.size(); ++i){
   for (auto detail : Details){
     std::vector<std::string> row;
-    // row.push_back(std::to_string(Details[i]->getId())); // "Id"
-    // row.push_back(Details[i]->getTypeName()); // "Тип"
-    // row.push_back(Details[i]->getComponentName()); // "Название"
-    // row.push_back(Details[i]->getPackageName()); // "Корпус"
-    // row.push_back(std::to_string(Details[i]->getPrice())); // "Цена"
-    // row.push_back(std::to_string(Details[i]->getCount())); // "Количество"
-    // row.push_back(Details[i]->getPlaceName()); // "Место хранения"
     row.push_back(std::to_string(detail->getId())); // "Id"
     row.push_back(detail->getTypeName()); // "Тип"
     row.push_back(detail->getComponentName()); // "Название"
@@ -166,5 +149,4 @@ std::vector<std::vector<std::string>> DetailsModel::getTable(){
     table.push_back(row);
   }
   return table;
-
 }

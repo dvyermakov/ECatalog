@@ -11,6 +11,8 @@ class DetailsModel : public Observable{
   private:
     std::vector<Detail*> Details;
     std::vector<std::string> Captions = {"Id", "Тип", "Название", "Корпус", "Цена", "Количество", "Место хранения"};
+
+    void clear();
         
   public:
     DetailsModel();

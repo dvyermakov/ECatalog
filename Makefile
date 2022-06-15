@@ -5,6 +5,7 @@ SRCS += src/dbg.cpp
 SRCS += src/Observable.cpp
 SRCS += src/DetailsModel.cpp
 SRCS += src/DetailsConsoleView.cpp
+SRCS += src/DetailsController.cpp
 SRCS += src/Type.cpp
 SRCS += src/Place.cpp
 SRCS += src/Package.cpp
