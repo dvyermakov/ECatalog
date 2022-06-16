@@ -9,16 +9,19 @@
 
 class DetailsModel : public Observable{
   private:
-    std::vector<Detail*> Details;
+    std::vector<Detail*> Details; // здесь хранится таблица
     std::vector<std::string> Captions = {"Id", "Тип", "Название", "Корпус", "Цена", "Количество", "Место хранения"};
+    std::string Statement; // SQL запрос
 
-    void clear();
+    void clearModel();
+    void clearStatement();
+    void prepareStatement(const std::string &nameLike);
         
   public:
     DetailsModel();
     ~DetailsModel();
     
-    void select();
+    void select(const std::string &nameLike);
     std::vector<std::string> getCaptions();
     std::vector<std::vector<std::string>> getTable();
 

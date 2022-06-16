@@ -72,13 +72,61 @@ DetailsModel::~DetailsModel(){
   
 }
 
-void DetailsModel::clear(){
+/**
+  * @brief      Функция для удаления строк из модели
+  * @param      none
+  * @retval     none
+  */
+void DetailsModel::clearModel(){
   if (Details.size() > 0){
     Details.clear();
   }
 }
 
-void DetailsModel::select(){
+/**
+  * @brief      Функция для очистки строки с SQL запросом
+  * @param      none
+  * @retval     none
+  */
+void DetailsModel::clearStatement(){
+  if (Statement.size() > 0){
+    Statement.clear();
+  }
+}
+
+/**
+  * @brief      Функция для подготовки строки с SQL заспросом
+  * @param      &nameLike - строка с частью названия детали, которую нужно найти
+  * @retval     none
+  */
+void DetailsModel::prepareStatement(const std::string &nameLike){
+  this->clearStatement();
+  Statement = "SELECT detail.id AS detailId, detail.Component AS detailComponent, detail.Count AS detailCount, detail.Price AS detailPrice, detail.Place AS detailPlace, "
+                        "component.Name AS componentName, component.Type AS componentType, component.Pack AS componentPack, "
+                        "type.Name AS typeName, "
+                        "place.Name AS placeName , "
+                        "package.Name AS packageName "
+                        "FROM detail "
+                        "LEFT JOIN component ON (detail.Component = component.id) "
+                        "LEFT JOIN type ON (component.Type = type.id) "
+                        "LEFT JOIN place ON (detail.Place = place.id) "
+                        "LEFT JOIN package ON (component.Pack = package.id)";
+  if (nameLike.length() > 0){
+    Statement += " WHERE (component.Name LIKE '";
+    Statement += nameLike;
+    Statement += "%')";
+  }
+  Statement += ";";
+  
+                        
+}
+
+/**
+  * @brief      Функция для обновления модели
+  * @param      &nameLike - строка с частью названия детали, которую нужно найти
+  * @retval     none
+  */
+void DetailsModel::select(const std::string &nameLike){
   const string url=EXAMPLE_HOST;
   const string user=EXAMPLE_USER;
   const string pass=EXAMPLE_PASS;
@@ -91,19 +139,10 @@ void DetailsModel::select(){
   con->setSchema(database);
   /* Creating a "simple" statement - "simple" = not a prepared statement */
   std::unique_ptr< sql::Statement > stmt(con->createStatement());
-  ok = stmt->execute("SELECT detail.id AS detailId, detail.Component AS detailComponent, detail.Count AS detailCount, detail.Price AS detailPrice, detail.Place AS detailPlace, "
-                        "component.Name AS componentName, component.Type AS componentType, component.Pack AS componentPack, "
-                        "type.Name AS typeName, "
-                        "place.Name AS placeName , "
-                        "package.Name AS packageName "
-                        "FROM detail "
-                        "LEFT JOIN component ON (detail.Component = component.id) "
-                        "LEFT JOIN type ON (component.Type = type.id) "
-                        "LEFT JOIN place ON (detail.Place = place.id) "
-                        "LEFT JOIN package ON (component.Pack = package.id) "
-                        "WHERE (component.Name LIKE 'AT%');");
+  this->prepareStatement(nameLike);
+  ok = stmt->execute(Statement);
   if (ok == true) {
-    this->clear();
+    this->clearModel();
     std::unique_ptr< sql::ResultSet > res(stmt->getResultSet());
     row = 0;    
     while (res->next()) {
@@ -131,10 +170,20 @@ void DetailsModel::select(){
   return;
 }
 
+/**
+  * @brief      Функция получения заголовка таблицы
+  * @param      none
+  * @retval     none
+  */
 std::vector<std::string> DetailsModel::getCaptions(){
   return Captions;
 }
 
+/**
+  * @brief      Функция получения таблицы
+  * @param      none
+  * @retval     none
+  */
 std::vector<std::vector<std::string>> DetailsModel::getTable(){
   std::vector<std::vector<std::string>> table;  
   for (auto detail : Details){

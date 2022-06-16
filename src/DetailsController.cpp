@@ -1,10 +1,23 @@
 #include <iostream>
+#include <cstdlib>
+#include <climits>
 #include "../inc/DetailsController.h"
 
+
+/**
+  * @brief      Конструктор
+  * @param      none
+  * @retval     none
+  */
 DetailsController::DetailsController(DetailsModel *model){
   _model = model;
 }
 
+/**
+  * @brief      Обработка команд от пользователя
+  * @param      none
+  * @retval     none
+  */
 void DetailsController::start(){
   int command = 0;
   do{
@@ -17,7 +30,12 @@ void DetailsController::start(){
     switch (command) {
       case (1):{
         system("clear");
-        _model->select();
+        std::cin.clear();
+        std::cin.ignore(INT_MAX,'\n'); 
+        std::cout << "\tВведите название компонента или его начало: ";
+        std::string nameLike;
+        getline(std::cin, nameLike);
+        _model->select(nameLike);
         std::cout << "\tНажмите 0 для продолжения..." << std::endl;
         int tmp;
         scanf("%d", &tmp);
