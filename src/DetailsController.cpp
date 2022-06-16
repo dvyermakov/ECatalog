@@ -3,10 +3,21 @@
 #include <climits>
 #include "../inc/DetailsController.h"
 
+
+/**
+  * @brief      Конструктор
+  * @param      none
+  * @retval     none
+  */
 DetailsController::DetailsController(DetailsModel *model){
   _model = model;
 }
 
+/**
+  * @brief      Обработка команд от пользователя
+  * @param      none
+  * @retval     none
+  */
 void DetailsController::start(){
   int command = 0;
   do{

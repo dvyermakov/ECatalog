@@ -72,18 +72,33 @@ DetailsModel::~DetailsModel(){
   
 }
 
+/**
+  * @brief      Функция для удаления строк из модели
+  * @param      none
+  * @retval     none
+  */
 void DetailsModel::clearModel(){
   if (Details.size() > 0){
     Details.clear();
   }
 }
 
+/**
+  * @brief      Функция для очистки строки с SQL запросом
+  * @param      none
+  * @retval     none
+  */
 void DetailsModel::clearStatement(){
   if (Statement.size() > 0){
     Statement.clear();
   }
 }
 
+/**
+  * @brief      Функция для подготовки строки с SQL заспросом
+  * @param      &nameLike - строка с частью названия детали, которую нужно найти
+  * @retval     none
+  */
 void DetailsModel::prepareStatement(const std::string &nameLike){
   this->clearStatement();
   Statement = "SELECT detail.id AS detailId, detail.Component AS detailComponent, detail.Count AS detailCount, detail.Price AS detailPrice, detail.Place AS detailPlace, "
@@ -106,6 +121,11 @@ void DetailsModel::prepareStatement(const std::string &nameLike){
                         
 }
 
+/**
+  * @brief      Функция для обновления модели
+  * @param      &nameLike - строка с частью названия детали, которую нужно найти
+  * @retval     none
+  */
 void DetailsModel::select(const std::string &nameLike){
   const string url=EXAMPLE_HOST;
   const string user=EXAMPLE_USER;
@@ -120,7 +140,6 @@ void DetailsModel::select(const std::string &nameLike){
   /* Creating a "simple" statement - "simple" = not a prepared statement */
   std::unique_ptr< sql::Statement > stmt(con->createStatement());
   this->prepareStatement(nameLike);
-
   ok = stmt->execute(Statement);
   if (ok == true) {
     this->clearModel();
@@ -151,10 +170,20 @@ void DetailsModel::select(const std::string &nameLike){
   return;
 }
 
+/**
+  * @brief      Функция получения заголовка таблицы
+  * @param      none
+  * @retval     none
+  */
 std::vector<std::string> DetailsModel::getCaptions(){
   return Captions;
 }
 
+/**
+  * @brief      Функция получения таблицы
+  * @param      none
+  * @retval     none
+  */
 std::vector<std::vector<std::string>> DetailsModel::getTable(){
   std::vector<std::vector<std::string>> table;  
   for (auto detail : Details){
