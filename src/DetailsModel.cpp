@@ -84,7 +84,7 @@ void DetailsModel::clearStatement(){
   }
 }
 
-void DetailsModel::prepareStatement(std::string nameLike){
+void DetailsModel::prepareStatement(const std::string &nameLike){
   this->clearStatement();
   Statement = "SELECT detail.id AS detailId, detail.Component AS detailComponent, detail.Count AS detailCount, detail.Price AS detailPrice, detail.Place AS detailPlace, "
                         "component.Name AS componentName, component.Type AS componentType, component.Pack AS componentPack, "
@@ -106,7 +106,7 @@ void DetailsModel::prepareStatement(std::string nameLike){
                         
 }
 
-void DetailsModel::select(std::string nameLike){
+void DetailsModel::select(const std::string &nameLike){
   const string url=EXAMPLE_HOST;
   const string user=EXAMPLE_USER;
   const string pass=EXAMPLE_PASS;

@@ -15,13 +15,13 @@ class DetailsModel : public Observable{
 
     void clearModel();
     void clearStatement();
-    void prepareStatement(std::string nameLike);
+    void prepareStatement(const std::string &nameLike);
         
   public:
     DetailsModel();
     ~DetailsModel();
     
-    void select(std::string nameLike);
+    void select(const std::string &nameLike);
     std::vector<std::string> getCaptions();
     std::vector<std::vector<std::string>> getTable();
 
